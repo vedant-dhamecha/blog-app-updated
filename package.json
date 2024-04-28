@@ -18,6 +18,8 @@
     "@tiptap/pm": "^2.2.3",
     "@tiptap/react": "^2.2.3",
     "@tiptap/starter-kit": "^2.2.4",
+    "@tsparticles/all": "^3.3.0",
+    "@tsparticles/react": "^3.0.0",
     "@uidotdev/usehooks": "^2.4.1",
     "axios": "^1.6.7",
     "framer-motion": "^11.1.7",
