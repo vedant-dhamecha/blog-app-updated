@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-const MemberShipPage = () => {
+const MemberShipPage = ({isDarkMode}) => {
   const userState = useSelector((state) => state.user);
 
   const advancedPackage = {
@@ -24,7 +24,7 @@ const MemberShipPage = () => {
 
   return (
     <>
-      <Header />
+      <Header isDarkMode={isDarkMode}/>
       <div
         className="py-10 md:px-14 px-4 max-w-screen-2xl mx-auto"
         id="pricing"

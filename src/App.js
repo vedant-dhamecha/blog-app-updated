@@ -59,8 +59,8 @@ function App() {
             element={<ProfilePage isDarkMode={isDarkMode} />}
           />
           <Route
-          path="/pricing"
-          element={<MemberShipPage isDarkMode={isDarkMode} />}
+            path="/pricing"
+            element={<MemberShipPage isDarkMode={isDarkMode} />}
           />
 
           {/* Admin Routes */}
@@ -82,7 +82,10 @@ function App() {
             <Route index element={<Member />} />
             {/* <Route path="comments" element={<Comments />} /> */}
             <Route path="posts/manage" element={<MemberManagePosts />} />
-            <Route path="posts/manage/edit/:slug" element={<MemberEditPost />} />
+            <Route
+              path="posts/manage/edit/:slug"
+              element={<MemberEditPost />}
+            />
             {/* <Route path="categories/manage" element={<Categories />} />
             <Route
               path="categories/manage/edit/:slug"
