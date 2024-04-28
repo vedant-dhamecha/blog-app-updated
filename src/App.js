@@ -22,6 +22,7 @@ import MemberLayout from "./pages/member/MemberLayout";
 import Member from "./pages/member/screens/Member";
 import MemberManagePosts from "./pages/member/screens/posts/MemberManagePosts";
 import MemberEditPost from "./pages/member/screens/posts/MemberEditPost";
+import MemberShipPage from "./pages/pricing/MemberShipPage";
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -34,7 +35,6 @@ function App() {
     <div className="App font-opensans">
       <div className={isDarkMode ? "dark" : "light"}>
         <Routes>
-
           {/* Normal User Routes */}
           <Route
             index
@@ -57,6 +57,10 @@ function App() {
           <Route
             path="/profile"
             element={<ProfilePage isDarkMode={isDarkMode} />}
+          />
+          <Route
+          path="/pricing"
+          element={<MemberShipPage isDarkMode={isDarkMode} />}
           />
 
           {/* Admin Routes */}
