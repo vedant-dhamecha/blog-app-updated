@@ -23,7 +23,14 @@ import Member from "./pages/member/screens/Member";
 import MemberManagePosts from "./pages/member/screens/posts/MemberManagePosts";
 import MemberEditPost from "./pages/member/screens/posts/MemberEditPost";
 import MemberShipPage from "./pages/pricing/MemberShipPage";
+import PaymentSuccess from "./pages/pricing/PaymentSuccess";
 
+import { loadStripe } from "@stripe/stripe-js";
+import PaymentForm from "./pages/pricing/PaymentForm";
+import { Elements } from '@stripe/react-stripe-js';
+
+
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
@@ -60,9 +67,18 @@ function App() {
           />
           <Route
             path="/pricing"
-            element={<MemberShipPage isDarkMode={isDarkMode} />}
+            element={<MemberShipPage />}
           />
-
+          <Route
+            path="/payment"
+            element={<Elements stripe={stripePromise}><PaymentForm /></Elements>}
+          />
+          <Route
+            path="/success"
+            element={<PaymentSuccess/>}
+          />
+          
+          
           {/* Admin Routes */}
           <Route path="/admin" element={<AdminLayout />}>
             <Route index element={<Admin />} />

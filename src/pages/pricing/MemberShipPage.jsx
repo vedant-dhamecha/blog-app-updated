@@ -13,13 +13,13 @@ import ParticlesComponent from "./particles";
 import "./particles.css";
 import { HiMiniArrowRightCircle } from "react-icons/hi2";
 
-const MemberShipPage = ({ isDarkMode }) => {
+const MemberShipPage = () => {
   const userState = useSelector((state) => state.user);
 
   const advancedPackage = {
     name: "Unlock World Of Wisdom",
-    monthlyPrice: 39,
-    yearlyPrice: 399,
+    monthlyPrice: 19,
+    yearlyPrice: 199,
     description:
       "Join us as a member for boundless posting privileges and unite with a global community passionate about top-tier blog content.",
     green: "/src/assets/green-dot.png",
@@ -27,9 +27,9 @@ const MemberShipPage = ({ isDarkMode }) => {
 
   return (
     <>
-      <Header isDarkMode={isDarkMode} />
+      <Header />
       {/* particle.js background */}
-      <ParticlesComponent id="particles" isDarkMode={isDarkMode} />
+      <ParticlesComponent id="particles" />
       <div
         className="lg:py-0 md:px-14 px-4 max-w-screen-2xl mx-auto"
         id="pricing"
@@ -49,7 +49,7 @@ const MemberShipPage = ({ isDarkMode }) => {
               backgroundColor: "rgba(255, 255, 255, 0.5)",
             }}
           >
-            <h3 className="text-4xl font-bold text-center text-[#010851] font-sans">
+            <h3 className="text-3xl font-bold text-center text-[#010851] font-sans">
               {advancedPackage.name}
             </h3>
             <p className="text-tertiary text-center my-6 font-Roboto font-semibold">
@@ -66,7 +66,7 @@ const MemberShipPage = ({ isDarkMode }) => {
                 <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
               </svg>
               <p>
-                ${advancedPackage.yearlyPrice}{" "}
+                ₹{advancedPackage.yearlyPrice}{" "}
                 <span class="text-base text-tertiary font-medium font-sans">
                   (eternal)
                 </span>
@@ -94,7 +94,7 @@ const MemberShipPage = ({ isDarkMode }) => {
             {/* button */}
             <div className="w-full mx-auto flex items-center justify-center mt-5">
               {userState.userInfo ? (
-                <Link to="/">
+                <Link to="/payment">
                   <button className="mt-6 px-10 text-secondary border border-secondary hover:bg-primary hover:text-white font-semibold py-2 rounded-lg">
                     Get Started
                   </button>
