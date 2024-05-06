@@ -96,16 +96,22 @@ const updateProfile = async (req, res, next) => {
 
     let userId = req.user._id;
 
-    if (!req.user.admin && userId !== userIdToUpdate) {
-      let error = new Error("Forbidden resource");
-      error.statusCode = 403;
-      throw error;
-    }
+    //only alllow admin to update profile
+    // if (!req.user.admin && userId !== userIdToUpdate) {
+    //   let error = new Error("Forbidden resource");
+    //   error.statusCode = 403;
+    //   throw error;
+    // }
 
     let user = await User.findById(userIdToUpdate);
 
     if (!user) {
       throw new Error("User not found");
+    }
+
+    //make member
+    if (req.body.makeMember === true) {
+      user.member = true;
     }
 
     if (typeof req.body.admin !== "undefined" && req.user.admin) {
