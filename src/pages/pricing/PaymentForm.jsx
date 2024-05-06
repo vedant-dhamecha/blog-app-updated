@@ -1,12 +1,16 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import "./PaymentForm.css";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 const PaymentForm = () => {
   const stripe = useStripe();
   const elements = useElements();
   const [processing, setProcessing] = useState(false);
+  const userState = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -16,39 +20,47 @@ const PaymentForm = () => {
     }
 
     setProcessing(true);
-    // Show "Processing..." for 4 seconds
-    setTimeout(() => {
+    try {
+      const { paymentMethod, error } = await stripe.createPaymentMethod({
+        type: "card",
+        card: elements.getElement(CardElement),
+      });
+
+      if (error) {
+        toast.error(error.message);
+      } else {
+        // Payment successful, update user membership status
+        const response = await axios.put(
+          `/api/users/updateProfile/${userState.userInfo._id}`,
+          { makeMember: true },
+          { headers: { Authorization: `Bearer ${userState.userInfo.token}` } } // Include token in headers
+        );
+        console.log("Profile updated:", response.data);
+
+        // Dispatch an action to update the user's membership status locally
+        dispatch({ type: "UPDATE_MEMBERSHIP_STATUS", payload: true });
+
+        toast.success("Payment successful!");
+        // Navigate to success page
+        window.location.href = "/success";
+      }
+    } catch (error) {
+      toast.error("Error processing payment: " + error.message);
+    } finally {
       setProcessing(false);
-      const result = stripe
-        .createPaymentMethod({
-          type: "card",
-          card: elements.getElement(CardElement),
-        })
-        .then((result) => {
-          if (result.error) {
-            // console.error(result.error.message);
-            toast.error(result.error.message);
-            // // Handle payment failure
-          } else {
-            console.log("Payment successful:", result.paymentMethod);
-            // Navigate to success page
-            window.location.href = "/success";
-          }
-        });
-    }, 4000);
+    }
   };
 
-
+  
   return (
     <>
-      <div class="main intro">
-        <div class="right-payment-info">
-          <div class="credit-card-form">
+      <div className="main intro">
+        <div className="right-payment-info">
+          <div className="credit-card-form">
             <img
-              class="Image1"
+              className="Image1"
               src="https://i.ibb.co/hgJ7z3J/6375aad33dbabc9c424b5713-card-mockup-01.png"
-              alt="6375aad33dbabc9c424b5713-card-mockup-01"
-              border="0"
+              alt="Credit card"
             />
             <br />
             <form onSubmit={handleSubmit}>
@@ -68,7 +80,7 @@ const PaymentForm = () => {
               marginTop: "2px",
               marginBottom: "30px",
             }}
-            alt="powered by stripe"
+            alt="Powered by stripe"
           />
         </div>
       </div>

@@ -1,13 +1,22 @@
 import React, { useEffect } from "react";
 import "./PaymentSuccess.css";
-import backgroundSVG from "./PaymentSuccessBG.jpg"; // Import your background SVG image
+// import backgroundSVG from "./PaymentSuccessBG.jpg"; // Import your background SVG image
+import { useDispatch } from "react-redux";
+import { logout } from "../../../src/store/actions/user";
+import { useNavigate } from "react-router-dom";
 
 const PaymentSuccess = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   useEffect(() => {
-    // After 4 seconds, redirect to "/"
+    // Dispatch logout action
+    dispatch(logout());
+
+    // After 4 seconds, redirect to login
     const redirectTimeout = setTimeout(() => {
-      window.location.href = "/"; // Redirect to "/"
-    }, 4000); // 4000 milliseconds = 4 seconds
+      navigate("/login");
+    }, 4000);
 
     // Clear the timeout if the component unmounts before the timeout completes
     return () => clearTimeout(redirectTimeout);
