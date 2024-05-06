@@ -4,6 +4,7 @@ import { useWindowSize } from "@uidotdev/usehooks";
 import { images } from "../../../../constants";
 import { useEffect, useState } from "react";
 import { AiFillDashboard, AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+import { FaArrowLeft } from "react-icons/fa";
 import { FaComments, FaUser } from "react-icons/fa";
 import { MdDashboard } from "react-icons/md";
 import NavItem from "./NavItem";
@@ -78,56 +79,46 @@ const Header = () => {
             onClick={toggleMenuHandler}
           />
           {/* sidebar */}
-          <div className="fixed top-0 bottom-0 left-0 z-50 w-3/4 overflow-y-auto bg-white p-4 lg:static lg:h-full lg:w-full lg:p-6">
-            <Link to="/">
-              <img src={images.Logo} alt="logo" className="w-16" />
-            </Link>
-            <h4 className="mt-10 font-bold text-[#C7C7C7]">MAIN MENU</h4>
-            {/* menu items */}
-            <div className="mt-6 flex flex-col gap-y-[0.563rem]">
-              <NavItem
-                title="Dashboard"
-                link="/member"
-                icon={<AiFillDashboard className="text-xl" />}
-                name="dashboard"
-                activeNavName={activeNavName}
-                setActiveNavName={setActiveNavName}
-              />
-              {/* <NavItem
-                title="Comments"
-                link="/member/comments"
-                icon={<FaComments className="text-xl" />}
-                name="comments"
-                activeNavName={activeNavName}
-                setActiveNavName={setActiveNavName}
-              /> */}
-              <NavItemCollapse
-                title="Posts"
-                icon={<MdDashboard className="text-xl" />}
-                name="posts"
-                activeNavName={activeNavName}
-                setActiveNavName={setActiveNavName}
-              >
-                <Link to="/member/posts/manage">Manage all posts</Link>
-                <button
-                  disabled={isLoadingCreatePost}
-                  className="text-start disabled:opacity-60 disabled:cursor-not-allowed"
-                  onClick={() =>
-                    handleCreateNewPost({ token: userState.userInfo.token })
-                  }
+          <div className="fixed top-0 bottom-0 left-0 z-50 w-3/4 overflow-y-auto bg-white p-4 lg:static lg:h-full lg:w-full lg:p-6 flex flex-col justify-between">
+            <div>
+              <Link to="/">
+                <img src={images.Logo} alt="logo" className="w-16" />
+              </Link>
+              <h4 className="mt-10 font-bold text-[#C7C7C7]">MAIN MENU</h4>
+              {/* menu items */}
+              <div className="mt-6 flex flex-col gap-y-[0.563rem]">
+                <NavItem
+                  title="Dashboard"
+                  link="/member"
+                  icon={<AiFillDashboard className="text-xl" />}
+                  name="dashboard"
+                  activeNavName={activeNavName}
+                  setActiveNavName={setActiveNavName}
+                />
+                <NavItemCollapse
+                  title="Posts"
+                  icon={<MdDashboard className="text-xl" />}
+                  name="posts"
+                  activeNavName={activeNavName}
+                  setActiveNavName={setActiveNavName}
                 >
-                  Add New Post
-                </button>
-                {/* <Link to="/admin/categories/manage">Categories</Link> */}
-              </NavItemCollapse>
-              {/* <NavItem
-                title="Users"
-                link="/admin/users/manage"
-                icon={<FaUser className="text-xl" />}
-                name="users"
-                activeNavName={activeNavName}
-                setActiveNavName={setActiveNavName}
-              /> */}
+                  <Link to="/member/posts/manage">Manage all posts</Link>
+                  <button
+                    disabled={isLoadingCreatePost}
+                    className="text-start disabled:opacity-60 disabled:cursor-not-allowed"
+                    onClick={() =>
+                      handleCreateNewPost({ token: userState.userInfo.token })
+                    }
+                  >
+                    Add New Post
+                  </button>
+                </NavItemCollapse>
+              </div>
+            </div>
+            {/* Exit Button */}
+            <div className="flex justify-center items-center mb-4">
+              <FaArrowLeft className="w-6 h-6" onClick={() => navigate("/")} />
+              <span className="ml-2 text-[#C7C7C7] cursor-pointer" onClick={() => navigate("/")}>Exit</span>
             </div>
           </div>
         </div>
