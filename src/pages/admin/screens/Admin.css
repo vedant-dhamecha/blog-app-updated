@@ -73,6 +73,7 @@
   transition: 0.8s;
   transform: translateY(-50px);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  background: white;
 }
 
 .demo .card:hover .slide.slide2 {
