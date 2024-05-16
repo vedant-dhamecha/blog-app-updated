@@ -16,7 +16,7 @@ router
   .delete(authGuard, adminGuard, deletePost)
   .get(getPost);
 
-router.route("/").post(authGuard, adminGuard, createPost).get(getAllPosts);
+router.route("/").post(authGuard, createPost).get(getAllPosts);
 router.route("/member/:user").post(authGuard, memberGuard, createPost).get(getAllPostsForUser);
 
 export default router;
