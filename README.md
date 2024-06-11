@@ -1,7 +1,10 @@
-# Innovation Insight (Blog Website) UI Design in Figma (with Light-Dark Mode)
+# Innovation Insight (Blog Website) UI Design in Figma![image](https://github.com/vedant-dhamecha/blog-app-updated/assets/105575987/5cfb8f25-36a6-4994-932f-817487f014ca)
+ (with Light-Dark Mode) 
 [https://www.figma.com/file/kNlXYccXxcCgmC8TM00lq5/blog-design?type=design&node-id=0-1&mode=design&t=446rKqcnR5bC7wck-0](https://www.figma.com/design/gVaEfA58cIMrez4Qxss6yy/blog-design-dark?node-id=0-1&t=C9OiG93qcMthBFqr-0)
-# Website Demo in Video Format (MP4)
+# Demo in Video Format (MP4)
 https://drive.google.com/file/d/1fifg8UY4Nj6U0oZVAVbBgqlsEiov40nW/view?usp=sharing
+# Tech Stack:
+
 
 # Getting Started with Create React App
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
